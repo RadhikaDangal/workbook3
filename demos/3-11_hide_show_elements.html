@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hide and Show Elements</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+</head>
+
+<body>
+    <main class="container">
+        <input type="checkbox" name="toggleDetailsCheckbox" id="toggleDetailsCheckbox" onclick="hideOrShowDetails();">
+        <label for="showCheckbox">Show Paragraph</label>
+        <hr>
+        <section id="detailsSection" style="display:none;">
+            <p>With 3.572 billion viewers, half the world’s population watched the 2018 FIFA World Cup of soccer (or football, as many international fans call it), which is held every four years. That number is on par with the 2016 Summer Olympics; but only a quarter of the world watched the less-popular Winter Olympics in 2018.</p>
+            <p>A mash-up of two words to make a new word (such as breakfast and lunch into brunch, or motel from motor and hotel) is called a portmanteau. In case you’re wondering, the word “portmanteau” itself is not a portmanteau; it’s a compound word that refers to a duel-sided suitcase.</p>
+            <p>Flamin’ Hot Cheetos were developed by a janitor at Frito-Lay, Richard Montanez, who got the idea after putting chili powder on some rejected Cheetos and then pitched it to the CEO. He’s now a successful executive and motivational speaker, and a movie is in the works about his life.</p>
+        </section>
+    </main>
+    <script>
+        function hideOrShowDetails() {
+            const detailsSection = document.getElementById("detailsSection");
+            const toggleDetailsCheckbox = document.getElementById("toggleDetailsCheckbox");
+            if (toggleDetailsCheckbox.checked) {
+                detailsSection.style.display = "block";
+            } else {
+                detailsSection.style.display = "none";
+            }
+        }
+    </script>
+
+</body>
+
+</html>
