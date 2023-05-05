@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Car Rental Reservation</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.classless.min.css" />
+  </head>
+
+  <!-- <style>
+    h1 {text-align: center;}
+    form {text-align: center;}
+    fieldset {text-align: center;}
+</style>
+
+<style>
+div {
+  border: 1px solid black;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  margin-right: 150px;
+  margin-left: 80px;
+  background-color: lightblue;
+}
+</style> -->
+
+  <body>
+    <main>
+      <h1>Car Rental Reservation</h1>
+      <form>
+        <label for="pickupDate">Pickup Date:</label>
+        <input type="date" id="pickupDate" name="pickupDate" /><br /><br />
+
+        <label for="numDays">Number of Days:</label>
+        <input type="number" id="numDays" name="numDays" min="1" max="30" /><br /><br />
+
+        <label>Optional Services:</label><br />
+        <input type="radio" id="etTag" name="service" value="etTag" />
+        <label for="etTag">Electric Toll Tag - $3.95/day</label><br />
+
+        <input type="radio" id="gps" name="service" value="gps" />
+        <label for="gps">GPS - $2.95/day</label><br />
+
+        <input type="radio" id="roadside" name="service" value="roadside" />
+        <label for="roadside">Roadside Assistance - $2.95/day</label><br /><br />
+
+        <label for="under25">Are you under 25?</label><br />
+        <input type="radio" id="yes" name="under25" value="yes" />
+        <label for="yes">Yes</label><br />
+
+        <input type="radio" id="no" name="under25" value="no" />
+        <label for="no">No</label><br /><br />
+
+
+        <label for="carType">Car Rental:</label>
+        <select id="carType">
+          <option value="compact">Compact</option>
+          <option value="midsize">Midsize</option>
+          <option value="fullsize">Fullsize</option></select
+        ><br /><br />
+
+        <label for="surcharge">Under 25 Surcharge:</label>
+        <select id="surcharge">
+          <option value="0">No</option>
+          <option value="25">Yes - $25/day</option></select
+        ><br /><br />
+
+        <button type="button" onclick="calculateCost()">Estimate Total Cost</button><br /><br />
+
+        <label for="totalCost">Total Due:</label>
+        <input type="text" id="totalCost" name="totalCost" disabled />
+      </form>
+    </main>
+
+    <script>
+      function calculateCost() {
+        const pickupDate = document.getElementById("pickupDate").value;
+        const numDays = parseInt(document.getElementById("numDays").value);
+        const service = document.querySelector('input[name="service"]:checked').value;
+        const under25 = document.querySelector('input[name="under25"]:checked').value;
+        const carType = document.getElementById("carType").value;
+        const surcharge = parseInt(document.getElementById("surcharge").value);
+
+        let totalCost = 0;
+
+        switch (carType) {
+          case "compact":
+            totalCost = 50 * numDays;
+            break;
+          case "midsize":
+            totalCost = 75 * numDays;
+            break;
+          case "fullsize":
+            totalCost = 100 * numDays;
+            break;
+        }
+
+        switch (service) {
+          case "etTag":
+            totalCost += 3.95 * numDays;
+            break;
+          case "gps":
+            totalCost += 2.95 * numDays;
+            break;
+          case "roadside":
+            totalCost += 2.95 * numDays;
+            break;
+        }
+
+        if (under25 === "yes") {
+          totalCost += 25 * numDays;
+        }
+
+        if (surcharge === 25) {
+          totalCost += 25 * numDays;
+        }
+
+        document.getElementById("totalCost").value = "$" + totalCost.toFixed(2);
+      }
+    </script>
+  </body>
+</html>
